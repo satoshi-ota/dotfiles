@@ -8,6 +8,7 @@ Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'Shougo/neocomplete.vim'
+Plug 'tpope/vim-commentary'
 call plug#end()
 syntax enable
 set background=dark

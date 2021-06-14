@@ -168,3 +168,10 @@ endif
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 nnoremap <ESC><ESC> :nohlsearch<CR>
+nnoremap <silent>bp :bprevious<CR>
+nnoremap <silent>bn :bnext<CR>
+nnoremap <silent>bb :b#<CR>
+nnoremap <silent>bf :bf<CR>
+nnoremap <silent>bl :bl<CR>
+nnoremap <silent>bm :bm<CR>
+nnoremap <silent>bd :bdelete<CR>

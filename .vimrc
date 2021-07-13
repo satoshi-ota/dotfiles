@@ -1,4 +1,5 @@
 set number
+set noswapfile
 let g:solarized_termcolors=256
 call plug#begin('~/.vim/plugged')
 Plug 'cohama/lexima.vim'
@@ -9,10 +10,15 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 syntax enable
 set background=dark
 colorscheme solarized
+
+let g:clang_format#detect_style_file=1
+autocmd FileType c,cpp ClangFormatAutoEnable
 
 let g:solarized_termtrans=1
 let g:solarized_degrade=0
@@ -31,7 +37,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 "indentline"

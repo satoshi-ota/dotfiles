@@ -17,8 +17,10 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-let g:clang_format#detect_style_file=1
-autocmd FileType c,cpp ClangFormatAutoEnable
+" let g:clang_format#detect_style_file=1
+" autocmd FileType c,cpp ClangFormatAutoEnable
+set complete-=i   " disable scanning included files
+set complete-=t   " disable searching tags
 
 let g:solarized_termtrans=1
 let g:solarized_degrade=0

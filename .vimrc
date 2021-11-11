@@ -12,10 +12,30 @@ Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/vim-clang-format'
+Plug 'plasticboy/vim-markdown'
+Plug 'kannokanno/previm'
+Plug 'tyru/open-browser.vim'
 call plug#end()
 syntax enable
 set background=dark
 colorscheme solarized
+
+" plasticboy/vim-markdown
+" 折りたたみの禁止
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
+
+" kannokanno/previm
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+" let g:previm_open_cmd = 'open -a Google\ Chrome'
+" ctrl pでプレビュー
+nnoremap <silent> <C-p> :PrevimOpen<CR>
+
+" tyru/open-browser.vim
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 " let g:clang_format#detect_style_file=1
 " autocmd FileType c,cpp ClangFormatAutoEnable

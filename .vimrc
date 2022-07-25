@@ -12,25 +12,36 @@ Plug 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/vim-clang-format'
+Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'kannokanno/previm'
 Plug 'tyru/open-browser.vim'
+Plug 'tpope/vim-surround'
+Plug 'Yggdroot/indentLine'
+Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'vim-denops/denops.vim'
+" Plug 'kat0h/bufpreview.vim'
 call plug#end()
 syntax enable
 set background=dark
 colorscheme solarized
 
+set clipboard+=unnamed
+
 " plasticboy/vim-markdown
 " 折りたたみの禁止
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_auto_insert_bullets = 0
-let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_auto_insert_bullets=0
+let g:vim_markdown_new_list_item_indent=0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 
 " kannokanno/previm
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 " let g:previm_open_cmd = 'open -a Google\ Chrome'
 " ctrl pでプレビュー
-nnoremap <silent> <C-p> :PrevimOpen<CR>
+nnoremap <silent> <C-o> :PrevimOpen<CR>
+autocmd FileType c,cpp setlocal commentstring=//\ %s
 
 " tyru/open-browser.vim
 let g:netrw_nogx = 1 " disable netrw's gx mapping.

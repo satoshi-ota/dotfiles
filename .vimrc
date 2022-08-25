@@ -19,6 +19,8 @@ Plug 'tyru/open-browser.vim'
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'Shougo/unite-session'
+Plug 'skanehira/vsession'
 " Plug 'vim-denops/denops.vim'
 " Plug 'kat0h/bufpreview.vim'
 call plug#end()
@@ -27,6 +29,7 @@ set background=dark
 colorscheme solarized
 
 set clipboard+=unnamed
+set clipboard=unnamedplus
 
 " plasticboy/vim-markdown
 " 折りたたみの禁止

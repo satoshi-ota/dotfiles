@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-DOT_FILES=(.vimrc .tmux.conf .tmux-powerlinerc)
+DOT_FILES=(.vimrc .tmux.conf .tmux-powerlinerc .zshrc)
 
 for file in ${DOT_FILES[@]}
 do

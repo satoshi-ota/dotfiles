@@ -100,19 +100,22 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
-source /opt/ros/galactic/setup.zsh
-source /opt/ros/galactic/share/ros2cli/environment/ros2-argcomplete.zsh
+source /opt/ros/humble/setup.zsh
+source /opt/ros/humble/share/ros2cli/environment/ros2-argcomplete.zsh
+export COLCON_LOG_LEVEL="ERROR"
 export RCUTILS_COLORIZED_OUTPUT=1
 export RCUTILS_CONSOLE_OUTPUT_FORMAT="[{severity} {time}] [{name}]: {message}"
 # export ROS_DOMAIN_ID=100
 export ROS_LOCALHOST_ONLY=1
-# export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="/usr/local/libtorch/lib:$LD_LIBRARY_PATH"
 
 export DENO_INSTALL="/home/satoshi/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+eval "$(gh completion -s zsh)"
 
 # fbr - checkout git branch (including remote branches)
 fbr() {
@@ -146,3 +149,24 @@ fd() {
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
+
+aw_setup() {
+  sudo sysctl -w net.core.rmem_max=2147483647
+  sudo ifconfig lo multicast
+  source ./install/setup.zsh
+  source /opt/ros/humble/setup.zsh
+}
+
+core_dump_enable() {
+  ulimit -c unlimited
+  echo core | sudo tee /proc/sys/kernel/core_pattern
+  echo -n 1 | sudo tee /proc/sys/kernel/core_uses_pid
+}
+
+alias ros2-kill='pkill ros2 && pkill rviz2 && pkill aggregator_node && ps aux | grep python3 | grep ros2 | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep python3 | grep rqt_reconfigure | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep component_container | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep robot_state_publisher | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep topic_tools/relay | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep 'ros-args' | grep -v grep | awk '{ print 'kill ', $2 }' | sh'
+
+alias gs='git status'
+alias gl='git log'
+
+alias colcon-build-wno-pedantic='(){colcon build --symlink-install --cmake-args -DCMAKE_CXX_FLAGS="-Wno-error=pedantic" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache --continue-on-error $1 $2}'
+alias colcon-build='(){colcon build --symlink-install --cmake-args -DCMAKE_CXX_FLAGS="-w" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache --continue-on-error $1 $2}'

@@ -150,23 +150,25 @@ fd() {
   cd "$dir"
 }
 
-aw_setup() {
+aw-setup() {
   sudo sysctl -w net.core.rmem_max=2147483647
   sudo ifconfig lo multicast
   source ./install/setup.zsh
   source /opt/ros/humble/setup.zsh
 }
 
-core_dump_enable() {
+core-dump-enable() {
   ulimit -c unlimited
   echo core | sudo tee /proc/sys/kernel/core_pattern
   echo -n 1 | sudo tee /proc/sys/kernel/core_uses_pid
 }
 
-alias ros2-kill='pkill ros2 && pkill rviz2 && pkill aggregator_node && ps aux | grep python3 | grep ros2 | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep python3 | grep rqt_reconfigure | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep component_container | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep robot_state_publisher | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep topic_tools/relay | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep 'ros-args' | grep -v grep | awk '{ print 'kill ', $2 }' | sh'
+alias ros2-kill='pkill -KILL -f ros | pkill ros2 && pkill rviz2 && pkill aggregator_node && ps aux | grep python3 | grep ros2 | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep python3 | grep rqt_reconfigure | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep component_container | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep robot_state_publisher | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep topic_tools/relay | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep 'ros-args' | grep -v grep | awk '{ print 'kill ', $2 }' | sh'
 
 alias gs='git status'
 alias gl='git log'
 
-alias colcon-build-wno-pedantic='(){colcon build --symlink-install --cmake-args -DCMAKE_CXX_FLAGS="-Wno-error=pedantic" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache --continue-on-error $1 $2}'
-alias colcon-build='(){colcon build --symlink-install --cmake-args -DCMAKE_CXX_FLAGS="-w" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache --continue-on-error $1 $2}'
+alias colcon-build-wno-pedantic='(){MAKEFLAGS=$1 colcon build --symlink-install --cmake-args -DCMAKE_CXX_FLAGS="-Wno-error=pedantic" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache --continue-on-error $2 $3}'
+alias colcon-build='(){MAKEFLAGS=$1 colcon build --symlink-install --cmake-args -DCMAKE_CXX_FLAGS="-w" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache --continue-on-error $2 $3}'
+
+alias webauto-run='(){webauto ci scenario run --project-id $1 --scenario-id $2 --scenario-parameters $3}'

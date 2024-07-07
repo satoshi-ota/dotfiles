@@ -19,3 +19,9 @@ mkdir "$HOME"/.vim/dein
 for file in *; do
     ln -s "$HOME"/dotfiles/vim/dein/"$file" "$HOME"/.vim/dein/"$file"
 done
+
+cd "$HOME"/dotfiles/zsh/custom || exit
+
+for file in *; do
+    ln -s "$HOME"/dotfiles/zsh/custom/"$file" "$HOME"/.oh-my-zsh/custom/"$file"
+done

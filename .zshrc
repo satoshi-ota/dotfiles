@@ -1,8 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# shellcheck disable=SC1091
+# shellcheck disable=SC2034
+# shellcheck disable=SC2148
+
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME"/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -70,9 +74,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH"/oh-my-zsh.sh
 
 # User configuration
 
@@ -112,63 +116,6 @@ export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="/usr/local/libtorch/lib:$LD_LIBRARY_PATH"
 
-export DENO_INSTALL="/home/satoshi/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH="$HOME/.deno/bin:$PATH"
 
 eval "$(gh completion -s zsh)"
-
-# fbr - checkout git branch (including remote branches)
-fbr() {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-# fbr - checkout git branch
-fvim() {
-  vim $(fzf)
-}
-
-# fkill - kill process
-fkill() {
-  local pid
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-
-  if [ "x$pid" != "x" ]
-  then
-    echo $pid | xargs kill -${1:-9}
-  fi
-}
-
-# fd - cd to selected directory
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
-
-aw-setup() {
-  sudo sysctl -w net.core.rmem_max=2147483647
-  sudo ifconfig lo multicast
-  source ./install/setup.zsh
-  source /opt/ros/humble/setup.zsh
-}
-
-core-dump-enable() {
-  ulimit -c unlimited
-  echo core | sudo tee /proc/sys/kernel/core_pattern
-  echo -n 1 | sudo tee /proc/sys/kernel/core_uses_pid
-}
-
-alias ros2-kill='pkill -KILL -f ros | pkill ros2 && pkill rviz2 && pkill aggregator_node && ps aux | grep python3 | grep ros2 | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep python3 | grep rqt_reconfigure | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep component_container | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep robot_state_publisher | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep topic_tools/relay | grep -v grep | awk '{ print 'kill ', $2 }' | sh && ps aux | grep 'ros-args' | grep -v grep | awk '{ print 'kill ', $2 }' | sh'
-
-alias gs='git status'
-alias gl='git log'
-
-alias colcon-build-wno-pedantic='(){MAKEFLAGS=$1 colcon build --symlink-install --cmake-args -DCMAKE_CXX_FLAGS="-Wno-error=pedantic" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache --continue-on-error $2 $3}'
-alias colcon-build='(){MAKEFLAGS=$1 colcon build --symlink-install --cmake-args -DCMAKE_CXX_FLAGS="-w" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache --continue-on-error $2 $3}'
-
-alias webauto-run='(){webauto ci scenario run --project-id $1 --scenario-id $2 --scenario-parameters $3}'

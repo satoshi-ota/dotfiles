@@ -30,8 +30,8 @@ call ddc#custom#patch_global('sourceParams', {
       \ })
 
 " Mappings
-inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
-inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-j>   <Cmd>call pum#map#insert_relative(+1)<CR>
+inoremap <C-k>   <Cmd>call pum#map#insert_relative(-1)<CR>
 inoremap <C-l>   <Cmd>call pum#map#confirm()<CR>
 inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
 

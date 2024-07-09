@@ -95,3 +95,13 @@ hook_add = '''
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+depends = ['vim-lsp']
+
+[[plugins]]
+repo = 'shun/ddc-vim-lsp'

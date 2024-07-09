@@ -18,6 +18,10 @@ call ddc#custom#patch_global('sourceOptions', {
 call ddc#custom#patch_global('sourceOptions', {
       \ 'around': {'mark': '[AROUND]'},
       \ 'buffer': {'mark': '[BUFFER]'},
+      \ 'vim-lsp': {
+      \   'matchers': ['matcher_head'],
+      \   'mark': '[LSP]',
+      \ },
       \ })
 call ddc#custom#patch_global('sourceParams', {
       \ 'around': {'maxSize': 500},
@@ -26,7 +30,7 @@ call ddc#custom#patch_global('sourceParams', {
       \   'limitBytes': 5000000,
       \   'fromAltBuf': v:true,
       \   'forceCollect': v:true,
-      \ }
+      \ },
       \ })
 
 " Mappings

@@ -37,6 +37,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'preservim/nerdtree'
+hook_add = '''
+    map <C-n> :NERDTreeToggle<CR>
+'''
 
 [[plugins]]
 repo = 'preservim/vim-markdown'

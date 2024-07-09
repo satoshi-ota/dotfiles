@@ -7,17 +7,24 @@ for file in "${DOT_FILES[@]}"; do
 done
 
 cd "$HOME"/dotfiles/vim/conf || exit
-mkdir "$HOME"/.vim/conf
+mkdir -p "$HOME"/.vim/conf
 
 for file in *; do
     ln -s "$HOME"/dotfiles/vim/conf/"$file" "$HOME"/.vim/conf/"$file"
 done
 
 cd "$HOME"/dotfiles/vim/dein || exit
-mkdir "$HOME"/.vim/dein
+mkdir -p "$HOME"/.vim/dein
 
 for file in *; do
     ln -s "$HOME"/dotfiles/vim/dein/"$file" "$HOME"/.vim/dein/"$file"
+done
+
+cd "$HOME"/dotfiles/vim/after/syntax || exit
+mkdir -p "$HOME"/.vim/after/syntax
+
+for file in *; do
+    ln -s "$HOME"/dotfiles/vim/after/syntax/"$file" "$HOME"/.vim/after/syntax/"$file"
 done
 
 cd "$HOME"/dotfiles/zsh/custom || exit

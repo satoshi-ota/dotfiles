@@ -55,3 +55,6 @@ endif
 
 filetype plugin indent on
 syntax enable
+
+set cursorline
+highlight CursorLineNr term=bold cterm=NONE ctermfg=LightGreen ctermbg=NONE

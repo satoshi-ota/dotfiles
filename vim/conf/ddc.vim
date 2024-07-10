@@ -3,7 +3,7 @@ let g:denops#deno = '/home/satoshi/.deno/bin/deno'
 " Customize global settings
 " https://github.com/Shougo/ddc-around
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
-call ddc#custom#patch_global('sources', ['around', 'buffer'])
+call ddc#custom#patch_global('sources', ['around', 'buffer', 'vim-lsp'])
 
 " Use matcher_head and sorter_rank.
 " https://github.com/Shougo/ddc-matcher_head

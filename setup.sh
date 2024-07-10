@@ -32,3 +32,10 @@ cd "$HOME"/dotfiles/zsh/custom || exit
 for file in *; do
     ln -s "$HOME"/dotfiles/zsh/custom/"$file" "$HOME"/.oh-my-zsh/custom/"$file"
 done
+
+cd "$HOME"/dotfiles/clangd || exit
+mkdir -p "$HOME"/.config/clangd
+
+for file in *; do
+    ln -s "$HOME"/dotfiles/clangd/"$file" "$HOME"/.config/clangd/"$file"
+done

@@ -98,6 +98,9 @@ repo = 'ctrlpvim/ctrlp.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+    source $HOME/.vim/conf/vim-lsp.vim
+'''
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'

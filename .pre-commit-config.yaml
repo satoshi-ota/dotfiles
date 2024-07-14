@@ -20,3 +20,10 @@ repos:
     rev: v0.10.0.1
     hooks:
       - id: shellcheck
+        args: ["-x", "--exclude=SC1091", "--exclude=SC2148", "--exclude=SC2207", "--exclude=SC2144"]
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.8.0-1
+    hooks:
+      - id: shfmt
+        args: [-w, -s, -i=4]

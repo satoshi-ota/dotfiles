@@ -1,6 +1,3 @@
-# plugins
-plugins=(git zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
-
 # colcon
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 

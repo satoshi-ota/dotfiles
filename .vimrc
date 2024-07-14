@@ -58,3 +58,5 @@ syntax enable
 
 set cursorline
 highlight CursorLineNr term=bold cterm=NONE ctermfg=LightGreen ctermbg=NONE
+
+au BufNewFile,BufRead *.rviz setf yaml

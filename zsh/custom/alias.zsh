@@ -59,7 +59,7 @@ function ros2-reindex() {
     done
 }
 
-function ros2-kill() {
+function aw-kill() {
     pgrep -f ros2 | awk '{ print "kill -9", $1 }' | sh
     pgrep -f rviz2 | awk '{ print "kill -9", $1 }' | sh
     pgrep -f python3 | awk '{ print "kill -9", $1 }' | sh
@@ -71,13 +71,54 @@ function ros2-kill() {
     pgrep -f "ros-args" | awk '{ print "kill -9", $1 }' | sh
 }
 
-function cb() {
+function aw-cb() {
     colcon build --symlink-install \
         --continue-on-error \
         --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo \
         -DCMAKE_C_COMPILER_LAUNCHER=ccache \
         -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
         -DBUILD_CPP_MOCK_SCENARIOS=ON "${@}"
+}
+
+function aw-cd() {
+    if [ -e "$HOME"/pilot-auto"${1}" ]; then
+        cd "$HOME"/pilot-auto"${1}" || exit
+        source install/setup.zsh
+    fi
+}
+
+function psim() {
+    ros2 launch autoware_launch planning_simulator.launch.xml \
+        map_path:="$HOME"/map/"${1}" \
+        vehicle_model:=lexus \
+        sensor_model:=aip_xx1
+}
+
+function psim-xx1() {
+    ros2 launch autoware_launch planning_simulator.launch.xml \
+        map_path:="$HOME"/map/"${1}" \
+        vehicle_model:=jpntaxi \
+        sensor_model:=aip_xx1
+}
+
+function psim-x2() {
+    ros2 launch autoware_launch planning_simulator.launch.xml \
+        map_path:="$HOME"/map/"${1}" \
+        vehicle_model:=j6_gen1 \
+        sensor_model:=aip_x2
+}
+
+function lsim() {
+    ros2 launch autoware_launch logging_simulator.launch.xml \
+        map_path:="$HOME"/map/"${1}" \
+        vehicle_model:=lexus \
+        sensor_model:=aip_xx1 \
+        sensing:=false \
+        control:=false \
+        planning:=true \
+        perception:=false \
+        localization:=false \
+        system:=false
 }
 
 alias gs='git status'

@@ -1,5 +1,7 @@
 " basic setting
 set number
+set hidden
+set ttymouse=xterm
 set noswapfile
 set clipboard+=unnamed
 set clipboard=unnamedplus
@@ -60,3 +62,12 @@ set cursorline
 highlight CursorLineNr term=bold cterm=NONE ctermfg=LightGreen ctermbg=NONE
 
 au BufNewFile,BufRead *.rviz setf yaml
+
+nnoremap <ESC><ESC> :nohlsearch<CR>
+nnoremap <silent>bp :bprevious<CR>
+nnoremap <silent>bn :bnext<CR>
+nnoremap <silent>bb :b#<CR>
+nnoremap <silent>bf :bf<CR>
+nnoremap <silent>bl :bl<CR>
+nnoremap <silent>bm :bm<CR>
+nnoremap <silent>bd :bdelete<CR>

@@ -114,7 +114,16 @@ repo = 'Shougo/ddc-source-vim-lsp'
 rev = 'c050eeeca84834ab02929f3df521da9add9eb587'
 
 [[plugins]]
-repo = 'Shougo/unite.vim'
+repo = 'prabirshrestha/asyncomplete.vim'
 
 [[plugins]]
-repo = 'Quramy/vison'
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'elzr/vim-json'
+hook_add = '''
+    let g:vim_json_syntax_conceal = 0
+'''

@@ -87,6 +87,13 @@ function aw-cd() {
     fi
 }
 
+function x2() {
+    if [ -e "$HOME"/pilot-auto.x2 ]; then
+        cd "$HOME"/pilot-auto.x2 || exit
+        source install/setup.zsh
+    fi
+}
+
 function psim() {
     ros2 launch autoware_launch planning_simulator.launch.xml \
         map_path:="$HOME"/map/"${1}" \
@@ -113,6 +120,19 @@ function lsim() {
         map_path:="$HOME"/map/"${1}" \
         vehicle_model:=lexus \
         sensor_model:=aip_xx1 \
+        sensing:=false \
+        control:=false \
+        planning:=true \
+        perception:=false \
+        localization:=false \
+        system:=false
+}
+
+function lsim-x2() {
+    ros2 launch autoware_launch logging_simulator.launch.xml \
+        map_path:="$HOME"/map/"${1}" \
+        vehicle_model:=j6_gen1 \
+        sensor_model:=aip_x2 \
         sensing:=false \
         control:=false \
         planning:=true \

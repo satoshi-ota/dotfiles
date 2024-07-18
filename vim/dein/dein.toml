@@ -96,28 +96,28 @@ hook_add = '''
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
 
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-hook_add = '''
-    source $HOME/.vim/conf/vim-lsp.vim
-'''
+# [[plugins]]
+# repo = 'prabirshrestha/vim-lsp'
+# hook_add = '''
+#     source $HOME/.vim/conf/vim-lsp.vim
+# '''
 
-[[plugins]]
-repo = 'mattn/vim-lsp-settings'
-depends = ['vim-lsp']
+# [[plugins]]
+# repo = 'mattn/vim-lsp-settings'
+# depends = ['vim-lsp']
 
-[[plugins]]
-repo = 'shun/ddc-vim-lsp'
+# [[plugins]]
+# repo = 'shun/ddc-vim-lsp'
 
-[[plugins]]
-repo = 'Shougo/ddc-source-vim-lsp'
-rev = 'c050eeeca84834ab02929f3df521da9add9eb587'
+# [[plugins]]
+# repo = 'Shougo/ddc-source-vim-lsp'
+# rev = 'c050eeeca84834ab02929f3df521da9add9eb587'
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
 
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
+# [[plugins]]
+# repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/async.vim'

@@ -1,0 +1,7 @@
+#compdef play
+
+_play() {
+  _files -W ~/Downloads/ROSBAG_STORAGE/"${cmds}"
+}
+
+compdef _play play

@@ -1,0 +1,8 @@
+#compdef xx1
+
+_xx1() {
+  cmds=( $(find ~/ -maxdepth 1 -name "pilot-auto.xx1*" -type d) )
+  _values 'subcmd' $cmds
+}
+
+compdef _xx1 xx1

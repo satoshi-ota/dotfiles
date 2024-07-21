@@ -141,5 +141,21 @@ function lsim-x2() {
         system:=false
 }
 
+fpath=("$HOME"/.oh-my-zsh/custom "${fpath[@]}")
+
+function xx1() {
+    cd "$1" || exit
+    source install/setup.zsh
+}
+
+function x2() {
+    cd "$1" || exit
+    source install/setup.zsh
+}
+
+function play() {
+    ros2 bag play "$HOME"/Downloads/ROSBAG_STORAGE/"${1}" --clock 100
+}
+
 alias gs='git status'
 alias gl='git log'

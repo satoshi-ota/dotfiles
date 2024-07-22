@@ -59,7 +59,7 @@ function ros2-reindex() {
     done
 }
 
-function aw-kill() {
+function ros2-kill() {
     pgrep -f ros2 | awk '{ print "kill -9", $1 }' | sh
     pgrep -f rviz2 | awk '{ print "kill -9", $1 }' | sh
     pgrep -f python3 | awk '{ print "kill -9", $1 }' | sh
@@ -71,27 +71,13 @@ function aw-kill() {
     pgrep -f "ros-args" | awk '{ print "kill -9", $1 }' | sh
 }
 
-function aw-cb() {
+function build() {
     colcon build --symlink-install \
         --continue-on-error \
         --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo \
         -DCMAKE_C_COMPILER_LAUNCHER=ccache \
         -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
         -DBUILD_CPP_MOCK_SCENARIOS=ON "${@}"
-}
-
-function aw-cd() {
-    if [ -e "$HOME"/pilot-auto"${1}" ]; then
-        cd "$HOME"/pilot-auto"${1}" || exit
-        source install/setup.zsh
-    fi
-}
-
-function x2() {
-    if [ -e "$HOME"/pilot-auto.x2 ]; then
-        cd "$HOME"/pilot-auto.x2 || exit
-        source install/setup.zsh
-    fi
 }
 
 function psim() {
@@ -142,6 +128,13 @@ function lsim-x2() {
 }
 
 fpath=("$HOME"/.oh-my-zsh/custom "${fpath[@]}")
+
+function common() {
+    if [ -e "$HOME"/pilot-auto ]; then
+        cd "$HOME"/pilot-auto || exit
+        source install/setup.zsh
+    fi
+}
 
 function xx1() {
     cd "$1" || exit

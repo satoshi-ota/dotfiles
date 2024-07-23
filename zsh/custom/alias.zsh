@@ -108,7 +108,7 @@ function lsim() {
         sensor_model:=aip_xx1 \
         sensing:=false \
         control:=false \
-        planning:=true \
+        planning:=false \
         perception:=false \
         localization:=false \
         system:=false
@@ -121,7 +121,7 @@ function lsim-x2() {
         sensor_model:=aip_x2 \
         sensing:=false \
         control:=false \
-        planning:=true \
+        planning:=false \
         perception:=false \
         localization:=false \
         system:=false
@@ -130,20 +130,21 @@ function lsim-x2() {
 fpath=("$HOME"/.oh-my-zsh/custom "${fpath[@]}")
 
 function common() {
-    if [ -e "$HOME"/pilot-auto ]; then
-        cd "$HOME"/pilot-auto || exit
-        source install/setup.zsh
-    fi
+    cd "$HOME"/pilot-auto || exit
+    source install/setup.zsh
+    source /opt/ros/humble/share/ros2cli/environment/ros2-argcomplete.zsh
 }
 
 function xx1() {
     cd "$1" || exit
     source install/setup.zsh
+    source /opt/ros/humble/share/ros2cli/environment/ros2-argcomplete.zsh
 }
 
 function x2() {
     cd "$1" || exit
     source install/setup.zsh
+    source /opt/ros/humble/share/ros2cli/environment/ros2-argcomplete.zsh
 }
 
 function play() {

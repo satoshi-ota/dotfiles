@@ -1,6 +1,5 @@
 " basic setting
 set number
-set hidden
 set ttymouse=xterm
 set noswapfile
 set clipboard+=unnamed

@@ -70,3 +70,5 @@ nnoremap <silent>bf :bf<CR>
 nnoremap <silent>bl :bl<CR>
 nnoremap <silent>bm :bm<CR>
 nnoremap <silent>bd :bdelete<CR>
+
+autocmd FileType c,cpp,java setlocal commentstring=//\ %s

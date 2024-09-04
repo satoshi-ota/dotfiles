@@ -101,10 +101,30 @@ function psim-x2() {
         sensor_model:=aip_x2
 }
 
+function psim-erga() {
+    ros2 launch autoware_launch planning_simulator.launch.xml \
+        map_path:="$HOME"/map/"${1}" \
+        vehicle_model:=lv290q \
+        sensor_model:=aip_x2_erga_gen1
+}
+
 function lsim() {
     ros2 launch autoware_launch logging_simulator.launch.xml \
         map_path:="$HOME"/map/"${1}" \
         vehicle_model:=lexus \
+        sensor_model:=aip_xx1 \
+        sensing:=false \
+        control:=false \
+        planning:=false \
+        perception:=false \
+        localization:=false \
+        system:=false
+}
+
+function lsim-xx1() {
+    ros2 launch autoware_launch logging_simulator.launch.xml \
+        map_path:="$HOME"/map/"${1}" \
+        vehicle_model:=jpntaxi \
         sensor_model:=aip_xx1 \
         sensing:=false \
         control:=false \

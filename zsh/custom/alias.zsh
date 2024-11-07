@@ -33,7 +33,6 @@ function fd() {
 function aw-setup() {
     sudo sysctl -w net.core.rmem_max=2147483647
     sudo ifconfig lo multicast
-    source ./install/setup.zsh
     source /opt/ros/humble/setup.zsh
 }
 
@@ -84,21 +83,21 @@ function psim() {
     ros2 launch autoware_launch planning_simulator.launch.xml \
         map_path:="$HOME"/map/"${1}" \
         vehicle_model:=lexus \
-        sensor_model:=aip_xx1
+        sensor_model:=aip_xx1 "${@:2}"
 }
 
 function psim-xx1() {
     ros2 launch autoware_launch planning_simulator.launch.xml \
         map_path:="$HOME"/map/"${1}" \
         vehicle_model:=jpntaxi \
-        sensor_model:=aip_xx1
+        sensor_model:=aip_xx1 "${@:2}"
 }
 
 function psim-x2() {
     ros2 launch autoware_launch planning_simulator.launch.xml \
         map_path:="$HOME"/map/"${1}" \
         vehicle_model:=j6_gen1 \
-        sensor_model:=aip_x2
+        sensor_model:=aip_x2 "${@:2}"
 }
 
 function psim-erga() {
@@ -118,7 +117,7 @@ function lsim() {
         planning:=false \
         perception:=false \
         localization:=false \
-        system:=false
+        system:=false "${@:2}"
 }
 
 function lsim-xx1() {
@@ -144,7 +143,7 @@ function lsim-x2() {
         planning:=false \
         perception:=false \
         localization:=false \
-        system:=false
+        system:=false "${@:2}"
 }
 
 fpath=("$HOME"/.oh-my-zsh/custom "${fpath[@]}")

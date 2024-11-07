@@ -60,7 +60,7 @@ syntax enable
 set cursorline
 highlight CursorLineNr term=bold cterm=NONE ctermfg=LightGreen ctermbg=NONE
 
-au BufNewFile,BufRead *.rviz setf yaml
+au BufNewFile,BufRead *.rviz,*.jinja2 setf yaml
 
 nnoremap <ESC><ESC> :nohlsearch<CR>
 nnoremap <silent>bp :bprevious<CR>
